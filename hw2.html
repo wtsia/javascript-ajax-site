@@ -2,20 +2,157 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="CIS 114 Assignment X">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CIS 114 Assignment X</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Homework 2 - Basic Operations</title>
+    <link rel="stylesheet" type="text/css" href="styleshw2.css">
 </head>
+
 <body>
-    <header>
-        <h1>Homework 2</h1>
-    </header>
-    <nav>
-        <a href="index.html">Back to Assignments</a>
-    </nav>
-    <main>
-        <h2>Coming Soon!</h2>
-    </main>
+    <h1>Homework 2 - Basic Operations</h1>
+
+    <!-- Navigation -->
+    <div id="navigation">
+        <a href="#part1">Part 1</a>
+        <a href="#part2">Part 2</a>
+        <a href="#extra-credit">Extra Credit</a>
+        <a href="homework1.html">Homework 1</a>
+    </div>
+
+    <!-- Part 1 -->
+    <section id="part1">
+        <h2>Part 1</h2>
+        <p>This part displays:</p>
+        <p id="part1-output"><span id="xy">xy</span> <span id="num12">12</span> <span id="num89">89</span></p>
+        <a href="#top">Back to Top</a>
+    </section>
+
+    <!-- Part 2 -->
+    <section id="part2">
+        <h2>Part 2</h2>
+        <form id="part2-form" onsubmit="return false;">
+            <label for="num1">Enter first integer:</label>
+            <input type="text" id="num1">
+            <label for="num2">Enter second integer:</label>
+            <input type="text" id="num2">
+            <label for="num3">Enter third integer:</label>
+            <input type="text" id="num3">
+            <br>
+            <button id="calculate-button" type="button">Calculate</button>
+            <button id="clear-button">Clear</button>
+            <br>
+            <textarea id="part2-output" readonly></textarea>
+        </form>
+        <a href="#top">Back to Top</a>
+    </section>
+
+    <!-- Extra Credit -->
+    <section id="extra-credit">
+        <h2>Extra Credit</h2>
+        <div id="exchange-rates">
+            <table>
+                <tr>
+                    <th>Currency</th>
+                    <th>Rate</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Euro</td>
+                    <td>0.84</td>
+                    <td><input type="text" id="euro-value" readonly></td>
+                </tr>
+                <tr>
+                    <td>Canadian Dollar</td>
+                    <td>1.23</td>
+                    <td><input type="text" id="canadian-value" readonly></td>
+                </tr>
+                <tr>
+                    <td>Hong Kong Dollar</td>
+                    <td>7.76</td>
+                    <td><input type="text" id="hongkong-value" readonly></td>
+                </tr>
+                <tr>
+                    <td>Japanese Yen</td>
+                    <td>110.80</td>
+                    <td><input type="text" id="japanese-value" readonly></td>
+                </tr>
+                <tr>
+                    <td>Mexican Peso</td>
+                    <td>19.82</td>
+                    <td><input type="text" id="mexican-value" readonly></td>
+                </tr>
+            </table>
+            <label for="usd-amount">Enter Amount of U.S. Dollars</label>
+            <input type="text" id="usd-amount">
+        </div>
+    </section>
+
+    <script>
+        const xy = document.getElementById('xy');
+        xy.style.fontFamily = 'Times New Roman';
+        xy.style.color = 'red';
+
+        const num12 = document.getElementById('num12');
+        num12.style.color = 'blue';
+        num12.style.fontFamily = 'Arial';
+
+        const num89 = document.getElementById('num89');
+        num89.style.color = 'green';
+        num89.style.fontFamily = 'Impact';
+
+        // Part 2 JavaScript
+        const calculateButton = document.getElementById('calculate-button');
+        const clearButton = document.getElementById('clear-button');
+        const part2Output = document.getElementById('part2-output');
+
+        calculateButton.addEventListener('click', () => {
+            const num1 = parseInt(document.getElementById('num1').value);
+            const num2 = parseInt(document.getElementById('num2').value);
+            const num3 = parseInt(document.getElementById('num3').value);
+
+            if (isNaN(num1) || isNaN(num2) || isNaN(num3)) {
+                part2Output.value = 'Please enter valid numbers in all input boxes.';
+            } else {
+                const sum = num1 + num2 + num3;
+                const average = sum / 3;
+                const product = num1 * num2 * num3;
+                const smallest = Math.min(num1, num2, num3);
+                const largest = Math.max(num1, num2, num3);
+
+                part2Output.value = `Sum: ${sum}\nAverage: ${average}\nProduct: ${product}\nSmallest: ${smallest}\nLargest: ${largest}`;
+            }
+        });
+
+        clearButton.addEventListener('click', () => {
+            document.getElementById('num1').value = '';
+            document.getElementById('num2').value = '';
+            document.getElementById('num3').value = '';
+            part2Output.value = '';
+        });
+
+        // Extra Credit JavaScript
+        const usdAmount = document.getElementById('usd-amount');
+        const euroValue = document.getElementById('euro-value');
+        const canadianValue = document.getElementById('canadian-value');
+        const hongkongValue = document.getElementById('hongkong-value');
+        const japaneseValue = document.getElementById('japanese-value');
+        const mexicanValue = document.getElementById('mexican-value');
+
+        usdAmount.addEventListener('input', () => {
+            const amountUSD = parseFloat(usdAmount.value);
+            if (!isNaN(amountUSD)) {
+                euroValue.value = (amountUSD * 0.84).toFixed(2);
+                canadianValue.value = (amountUSD * 1.23).toFixed(2);
+                hongkongValue.value = (amountUSD * 7.76).toFixed(2);
+                japaneseValue.value = (amountUSD * 110.80).toFixed(2);
+                mexicanValue.value = (amountUSD * 19.82).toFixed(2);
+            } else {
+                euroValue.value = '';
+                canadianValue.value = '';
+                hongkongValue.value = '';
+                japaneseValue.value = '';
+                mexicanValue.value = '';
+            }
+        });
+    </script>
 </body>
 </html>

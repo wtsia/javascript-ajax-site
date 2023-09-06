@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+}
+h1 {
+    text-align: center;
+}
+#navigation {
+    text-align: center;
+    margin-bottom: 20px;
+}
+#navigation a {
+    margin: 0 10px;
+}
+#part1-output {
+    font-family: 'Times New Roman', serif;
+    color: red;
+    font-weight: bold;
+    display: inline;
+}
+#part2-form {
+    text-align: center;
+    margin-top: 20px;
+}
+#part2-form input[type="text"] {
+    width: 50px;
+}
+#part2-form textarea {
+    width: 100%;
+    height: 100px;
+    margin-top: 10px;
+}
+#exchange-rates {
+    text-align: center;
+    margin-top: 20px;
+}
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 0 auto;
+}
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+input[type="text"]:focus {
+    background-color: lightblue;
+}
