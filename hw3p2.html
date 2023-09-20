@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homework 3 - Part 2</title>
+    <script>
+        function calculateEarnings() {
+            // Get input values
+            var name = document.getElementById("name").value;
+            var qtyItem1 = parseInt(document.getElementById("qtyItem1").value);
+            var qtyItem2 = parseInt(document.getElementById("qtyItem2").value);
+            var qtyItem3 = parseInt(document.getElementById("qtyItem3").value);
+            var qtyItem4 = parseInt(document.getElementById("qtyItem4").value);
+
+            // Check for valid input
+            if (isNaN(qtyItem1) || isNaN(qtyItem2) || isNaN(qtyItem3) || isNaN(qtyItem4) ||
+                qtyItem1 < 0 || qtyItem2 < 0 || qtyItem3 < 0 || qtyItem4 < 0) {
+                document.getElementById("result").innerHTML = "Invalid input. Please enter valid quantities (non-negative integers).";
+                return;
+            }
+
+            // Calculate total sold and earnings
+            var item1Price = 20.99;
+            var item2Price = 12.75;
+            var item3Price = 9.95;
+            var item4Price = 35.89;
+
+            var totalSold = qtyItem1 * item1Price + qtyItem2 * item2Price + qtyItem3 * item3Price + qtyItem4 * item4Price;
+            var earnings = 250 + (0.09 * totalSold);
+
+            // Display results
+            document.getElementById("nameDisplay").textContent = "Seller's Name: " + name;
+            document.getElementById("totalSold").textContent = "Total Sold: $" + totalSold.toFixed(2);
+            document.getElementById("totalEarnings").textContent = "Total Earnings: $" + earnings.toFixed(2);
+        }
+
+        function clearForm() {
+            document.getElementById("name").value = "";
+            document.getElementById("qtyItem1").value = "";
+            document.getElementById("qtyItem2").value = "";
+            document.getElementById("qtyItem3").value = "";
+            document.getElementById("qtyItem4").value = "";
+            document.getElementById("nameDisplay").textContent = "";
+            document.getElementById("totalSold").textContent = "";
+            document.getElementById("totalEarnings").textContent = "";
+            document.getElementById("result").innerHTML = "";
+        }
+    </script>
+</head>
+<body>
+    <h1>Salesperson Earnings</h1>
+    <form>
+        <label for="name">Seller's Name:</label>
+        <input type="text" id="name"><br>
+
+        <label for="qtyItem1">Item 1 (Qty Sold):</label>
+        <input type="number" id="qtyItem1" min="0"><br>
+
+        <label for="qtyItem2">Item 2 (Qty Sold):</label>
+        <input type="number" id="qtyItem2" min="0"><br>
+
+        <label for="qtyItem3">Item 3 (Qty Sold):</label>
+        <input type="number" id="qtyItem3" min="0"><br>
+
+        <label for="qtyItem4">Item 4 (Qty Sold):</label>
+        <input type="number" id="qtyItem4" min="0"><br>
+
+        <button type="button" onclick="calculateEarnings()">Calculate</button>
+        <button type="button" onclick="clearForm()">Clear</button>
+    </form>
+
+    <div id="nameDisplay"></div>
+    <div id="totalSold"></div>
+    <div id="totalEarnings"></div>
+</body>
+</html>

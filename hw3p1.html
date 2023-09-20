@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homework 3 - Part 1</title>
+    <script>
+        function calculateGrade() {
+            // Get input values
+            var hwAvg = parseFloat(document.getElementById("hwAvg").value);
+            var midExam = parseFloat(document.getElementById("midExam").value);
+            var finalExam = parseFloat(document.getElementById("finalExam").value);
+            var participation = parseFloat(document.getElementById("participation").value);
+
+            // Check for valid input
+            if (isNaN(hwAvg) || isNaN(midExam) || isNaN(finalExam) || isNaN(participation) ||
+                hwAvg < 0 || hwAvg > 100 || midExam < 0 || midExam > 100 ||
+                finalExam < 0 || finalExam > 100 || participation < 0 || participation > 100) {
+                document.getElementById("result").innerHTML = "Invalid input. Please enter valid grades (0-100).";
+                return;
+            }
+
+            // Calculate final average
+            var finalAverage = (.5 * hwAvg) + (.2 * midExam) + (.2 * finalExam) + (.1 * participation);
+
+            // Calculate letter grade
+            var letterGrade;
+            if (finalAverage >= 90) {
+                letterGrade = 'A';
+            } else if (finalAverage >= 80) {
+                letterGrade = 'B';
+            } else if (finalAverage >= 70) {
+                letterGrade = 'C';
+            } else if (finalAverage >= 60) {
+                letterGrade = 'D';
+            } else {
+                letterGrade = 'F';
+            }
+
+            // Display result
+            if (letterGrade === 'D' || letterGrade === 'F') {
+                document.getElementById("result").innerHTML = "Student must retake the course";
+            } else {
+                document.getElementById("result").innerHTML = "Final Average: " + Math.round(finalAverage) + "<br>Final Letter Grade: " + letterGrade;
+            }
+        }
+
+        function clearForm() {
+            document.getElementById("hwAvg").value = "";
+            document.getElementById("midExam").value = "";
+            document.getElementById("finalExam").value = "";
+            document.getElementById("participation").value = "";
+            document.getElementById("result").innerHTML = "";
+        }
+    </script>
+</head>
+<body>
+    <h1>Student Grades</h1>
+    <form>
+        <label for="hwAvg">Homework Average:</label>
+        <input type="number" id="hwAvg" min="0" max="100"><br>
+
+        <label for="midExam">Mid-Term Exam Score:</label>
+        <input type="number" id="midExam" min="0" max="100"><br>
+
+        <label for="finalExam">Final Exam Score:</label>
+        <input type="number" id="finalExam" min="0" max="100"><br>
+
+        <label for="participation">Participation:</label>
+        <input type="number" id="participation" min="0" max="100"><br>
+
+        <button type="button" onclick="calculateGrade()">Calculate</button>
+        <button type="button" onclick="clearForm()">Clear</button>
+    </form>
+
+    <div id="result"></div>
+</body>
+</html>
