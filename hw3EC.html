@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multiplication Game</title>
+</head>
+<body>
+    <h1>Multiplication Game</h1>
+    <div id="question"></div>
+    <input type="number" id="answer" placeholder="Enter your answer">
+    <button onclick="checkAnswer()">Submit</button>
+    <p id="feedback"></p>
+    <button onclick="playAgain('yes')">Yes</button>
+    <button onclick="playAgain('no')">No</button>
+
+    <script>
+        function generateRandomNumber() {
+            return Math.floor(Math.random() * 10);
+        }
+
+        var num1, num2, correctAnswer;
+
+        function generateQuestion() {
+            num1 = generateRandomNumber();
+            num2 = generateRandomNumber();
+            correctAnswer = num1 * num2;
+            document.getElementById("question").textContent = `How much is ${num1} times ${num2}?`;
+        }
+
+        function checkAnswer() {
+            var userAnswer = parseInt(document.getElementById("answer").value);
+            var feedbackElement = document.getElementById("feedback");
+
+            if (userAnswer === correctAnswer) {
+                feedbackElement.textContent = "Very good!";
+            } else {
+                feedbackElement.textContent = "No. Please try again.";
+            }
+        }
+
+        function playAgain(response) {
+            var feedbackElement = document.getElementById("feedback");
+
+            if (response === 'yes') {
+                feedbackElement.textContent = "";
+                generateQuestion();
+            } else if (response === 'no') {
+                feedbackElement.textContent = "Thanks for playing, see you next time";
+                document.getElementById("question").textContent = "";
+                document.getElementById("answer").value = "";
+            }
+        }
+
+        generateQuestion();
+    </script>
+</body>
+</html>
