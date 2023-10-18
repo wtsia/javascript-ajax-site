@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homework 4 - Looping Statements</title>
+    <link rel="stylesheet" type="text/css" href="styles.p2.css">
+</head>
+<body>
+    <nav>
+        <a href="hw4p1.html">Part 1</a>
+        <a href="hw4p2.html">Part 2</a>
+        <a href="hw4EC.html">Extra Credit</a>
+        <a href="index.html">Main</a>
+    </nav>
+    <!-- Part 2 -->
+    <section id="part2">
+        <h2>Part 2</h2>
+        <h3>Learn about compound interest</h3>
+        <script>
+            var principal = 1000
+            var rate = 0.05
+            var years = 5
+            
+            for (var i = 0; i < 3; i++) {
+                var amount = principal;
+                var irate = rate + i*0.01
+                var table = "<table><tr><th>Year</th><th>Amount on deposit</th><th>Interest Rate</th></tr>";
+                for (var j = 1; j <= years; j++) {
+                    var interest = amount * irate;
+                    amount += interest;
+                    if (j % 2 == 1) {
+                        table += "<tr class = \"red\"><td>" + j + "</td><td>" + amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) + "</td><td>" + irate.toFixed(2) + "</td></tr>";
+                    } else {
+                        table += "<tr><td>" + j + "</td><td>" + amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) + "</td><td>" + irate.toFixed(2) + "</td></tr>";
+                    }
+                }
+                table += "</table>";
+                document.write(table);
+            }
+        </script>
+    </section>
+</body>
+</html>

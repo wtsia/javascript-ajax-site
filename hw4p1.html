@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homework 4 - Looping Statements</title>
+    <link rel="stylesheet" type="text/css" href="styles.p1.css">
+</head>
+<body>
+    <nav>
+        <a href="hw4p1.html">Part 1</a>
+        <a href="hw4p2.html">Part 2</a>
+        <a href="hw4EC.html">Extra Credit</a>
+        <a href="index.html">Main</a>
+    </nav>
+    <!-- Part 1 -->
+    <section id="part1">
+        <h2>Part 1</h2>
+        <h3>Using the for statement</h3>
+        <p>Calculating the product and sum of every fourth integer from 5 to 25:</p>
+        <script>
+            var productFor = 1;
+            var sumFor = 0;
+            for (var i = 5; i <= 25; i += 4) {
+                productFor *= i;
+                sumFor += i;
+            }
+            document.write("The result of product is " + productFor.toLocaleString() + "<br>");
+            document.write("The result of sum is " + sumFor.toLocaleString() + "<br>");
+        </script>
+
+        <h3>Using the while statement</h3>
+        <p>Calculating the product and sum of every third integer from 3 to 18:</p>
+        <script>
+            var productWhile = 1;
+            var sumWhile = 0;
+            var j = 3;
+            while (j <= 18) {
+                productWhile *= j;
+                sumWhile += j;
+                j += 3;
+            }
+            document.write("The result of product is " + productWhile.toLocaleString() + "<br>");
+            document.write("The result of sum is " + sumWhile.toLocaleString() + "<br>");
+        </script>
+    </section>
+</body>
+</html>

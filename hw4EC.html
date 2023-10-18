@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homework 4 - Looping Statements</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <nav>
+        <a href="hw4p1.html">Part 1</a>
+        <a href="hw4p2.html">Part 2</a>
+        <a href="hw4EC.html">Extra Credit</a>
+        <a href="index.html">Main</a>
+    </nav>
+    <!-- Extra Credit - Hollow Square -->
+    <section id="extracredit">
+        <h2>Extra Credit</h2>
+        <h3>Create a Hollow Square</h3>
+        <form>
+            <label for="squareSize">Enter a number between 2 and 10:</label>
+            <input type="number" id="squareSize" min="2" max="10">
+            <button id="generateSquare">Generate Square</button>
+            <button id="clearSquare">Clear</button>
+        </form>
+        <div id="squareResult"></div>
+        <script>
+            document.getElementById("generateSquare").addEventListener('click', () => {
+                var size = parseInt(document.getElementById("squareSize").value);
+                var square = "";
+                if (size >= 2 && size <= 10) {
+                    for (var i = 0; i < size; i++) {
+                        if (i === 0 || i === size - 1) {
+                            square += "*".repeat(size) + "<br>";
+                        } else {
+                            square += "*" + " ".repeat(size - 2) + "*<br>";
+                        }
+                    }
+                    document.getElementById("squareResult").innerHTML = square;
+                } else {
+                    document.getElementById("squareResult").innerHTML = "Invalid input. Enter a number between 2 and 10.";
+                }
+            });
+
+            document.getElementById("clearSquare").addEventListener('click', () => {
+                document.getElementById("squareSize").value = "";
+                document.getElementById("squareResult").innerHTML = "";
+            });
+        </script>
+    </section>
+</body>
+</html>
