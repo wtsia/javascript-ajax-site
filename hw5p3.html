@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homework 5 - Part 3</title>
+    <script>
+        function getStateInfo() {
+            var stateInput = document.getElementById("stateInput").value.toUpperCase(); // Transform input to uppercase
+            var states = [
+                ["AL", "Alabama", "Montgomery", "4,903,185"],
+                ["AK", "Alaska", "Juneau", "731,545"],
+                // Add more states following the same format
+            ];
+
+            var stateFound = false;
+            var output = document.getElementById("output");
+            
+            for (var i = 0; i < states.length; i++) {
+                if (states[i].includes(stateInput)) {
+                    stateFound = true;
+                    output.innerHTML = "Thanks for your inquiry, here is the information you requested:<br>" +
+                        "State Abbr = " + states[i][0] + "<br>" +
+                        "State Name = " + states[i][1] + "<br>" +
+                        "Capital = " + states[i][2] + "<br>" +
+                        "Population = " + states[i][3];
+                    break;
+                }
+            }
+
+            if (!stateFound) {
+                output.innerHTML = "Sorry, we do not have information about this state!";
+            }
+        }
+
+        function clearForm() {
+            document.getElementById("form3").reset();
+            document.getElementById("output").innerHTML = "";
+        }
+    </script>
+</head>
+<body>
+    <h1>Part 3 - State Info</h1>
+    <a href="index.html">Back to Main Homework 5 Page</a><br><br>
+    <form id="form3">
+        <input type="text" id="stateInput" placeholder="Enter State or Abbreviation">
+        <button type="button" onclick="getStateInfo()">State Info</button>
+        <button type="button" onclick="clearForm()">Clear Form</button>
+    </form>
+    <div id="output"></div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homework 5 - Part 1</title>
+    <link rel="stylesheet" type="text/css" href="styles.p1.css">
+</head>
+<body>
+    <h1>Part 1 - Form</h1>
+    <a href="hw5.html">Back to Main Homework 5 Page</a><br><br>
+    <form id="form1">
+        <input type="text" id="fullname" placeholder="Full Name"><br><br>
+
+        <input type="radio" id="ageGroup1" name="ageGroup" value="less than 21"> <label for="ageGroup1">Less than 21</label>
+        <!-- Other radio buttons for different age groups -->
+
+        <br><br>
+        
+        <input type="checkbox" id="browser1" name="browsers" value="Firefox"> <label for="browser1">Firefox</label>
+        <!-- Other checkboxes for different browsers -->
+
+        <br><br>
+        
+        <select id="movies">
+            <option value="">Select movie preference</option>
+            <option value="Action">Action</option>
+            <!-- Other movie options -->
+        </select>
+        
+        <br><br>
+        
+        <button type="button" onclick="validateForm()">Submit</button>
+        <button type="button" onclick="clearForm()">Clear Form</button>
+    </form>
+    <div id="output"></div>
+
+    
+    <script>
+        function validateForm() {
+            var name = document.getElementById("fullname").value;
+            var ageGroup = document.querySelector('input[name="ageGroup"]:checked');
+            var checkboxes = document.querySelectorAll('input[name="browsers"]:checked');
+            var moviePreference = document.getElementById("movies").value;
+
+            if (name === "" || !ageGroup || checkboxes.length === 0 || moviePreference === "") {
+                document.getElementById("output").innerHTML = "Error: Please fill out all fields!";
+            } else {
+                document.getElementById("output").innerHTML = "Thanks, your data was submitted!";
+            }
+        }
+
+        function clearForm() {
+            document.getElementById("form1").reset();
+            document.getElementById("output").innerHTML = "";
+        }
+    </script>
+</body>
+</html>

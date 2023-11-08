@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homework 5 - Part 2</title>
+    <link rel="stylesheet" type="text/css" href="styles.p2.css">
+    <script>
+        function changeWebsite(destination) {
+            window.open(destination, '_blank');
+        }
+    </script>
+</head>
+<body>
+    <h1>Part 2 - Dropdowns</h1>
+    <a href="hw5.html">Back to Main Homework 5 Page</a><br><br>
+    <select onchange="changeWebsite(this.value)">
+        <option value="">Select a website</option>
+        <option value="https://www.example1.com">Example 1</option>
+        <!-- Other website options -->
+    </select>
+
+    <select id="secondDropdown">
+        <option value="">Select a website</option>
+        <!-- Options for the second dropdown -->
+    </select>
+    <button onclick="changeWebsite(document.getElementById('secondDropdown').value)">Go to Website</button>
+</body>
+</html>
