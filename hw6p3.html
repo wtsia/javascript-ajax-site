@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 6 - Part 3</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script>
+        // Apply jQuery Mask to phone number input
+        $(document).ready(function(){
+            $('#phoneNumberInput').mask('(000) 000-0000');
+        });
+
+        function processPhoneNumber() {
+            // Part 3 script goes here
+            // Validate phone number, extract parts, and display results
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Part 3: Your Heading Here</h1>
+
+    <form>
+        <label for="phoneNumberInput">Type the phone number (e.g., (999) 999-9999):</label>
+        <input type="text" id="phoneNumberInput" required>
+        <br>
+        <button type="button" onclick="processPhoneNumber()">Start Process</button>
+        <button type="reset">Clear</button>
+    </form>
+
+    <div id="errorDisplay"></div>
+
+    <input type="text" id="areaCode" readonly>
+    <input type="text" id="first3Digits" readonly>
+    <input type="text" id="last4Digits" readonly>
+
+    <p><a href="index.html">Go back to Homework 6 main page</a></p>
+
+</body>
+</html>
