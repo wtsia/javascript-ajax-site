@@ -6,26 +6,45 @@
     <title>Homework 6 - Part 1</title>
     <script>
         function calculate() {
-            // Part 1 script goes here
-            // Validate input, perform calculations, and display results
+            // Get the input value
+            var inputNumber = parseFloat(document.getElementById('inputNumber').value);
+
+            // Check if the input is a valid number with at least 4 decimals
+            if (isNaN(inputNumber) || inputNumber.toFixed(4) !== inputNumber.toString()) {
+                document.getElementById('output').innerText = "You need to type a number with at least 4 decimals, please try again";
+            } else {
+                // Perform calculations
+                var roundedInteger = Math.round(inputNumber);
+                var squareRoot = Math.round(Math.sqrt(inputNumber));
+                var roundedTenths = inputNumber.toFixed(1);
+                var roundedHundredths = inputNumber.toFixed(2);
+                var roundedThousandths = inputNumber.toFixed(3);
+
+                // Display results
+                document.getElementById('output').innerText = "You typed number " + inputNumber.toFixed(4) +
+                    "\nRounded to the nearest integer = " + roundedInteger +
+                    "\nSquare root rounded to integer = " + squareRoot +
+                    "\nRounded to the nearest 10th position = " + roundedTenths +
+                    "\nRounded to the nearest 100th position = " + roundedHundredths +
+                    "\nRounded to the nearest 1000th position = " + roundedThousandths;
+            }
+        }
+
+        function clearForm() {
+            document.getElementById('inputNumber').value = "";
+            document.getElementById('output').innerText = "";
         }
     </script>
 </head>
 <body>
-
-    <h1>Part 1: Your Heading Here</h1>
-
+    <h1>Part 1: Number Calculations</h1>
     <form>
-        <label for="numberInput">Enter a number with 4 decimals:</label>
-        <input type="text" id="numberInput" required pattern="\d+(\.\d{4})?" title="Enter a number with at least 4 decimals">
-        <br>
+        <label for="inputNumber">Enter a number with 4 decimals:</label>
+        <input type="text" id="inputNumber" />
         <button type="button" onclick="calculate()">Submit</button>
-        <button type="reset">Clear</button>
+        <button type="button" onclick="clearForm()">Clear Form</button>
     </form>
-
-    <div id="outputResult"></div>
-
-    <p><a href="index.html">Go back to Homework 6 main page</a></p>
-
+    <div id="output"></div>
+    <a href="index.html">Back to Main Page</a>
 </body>
 </html>

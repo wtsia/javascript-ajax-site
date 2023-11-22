@@ -6,29 +6,37 @@
     <title>Homework 6 - Part 2</title>
     <script>
         function searchCharacter() {
-            // Part 2 script goes here
-            // Search for character, count occurrences, and display results
+            var content = document.getElementById('longContent').value;
+            var searchChar = document.getElementById('searchChar').value.toLowerCase();
+            var count = 0;
+
+            for (var i = 0; i < content.length; i++) {
+                if (content.charAt(i).toLowerCase() === searchChar) {
+                    count++;
+                }
+            }
+
+            if (count > 0) {
+                document.getElementById('result').innerText = "Character '" + searchChar + "' found " + count + " times in the content.";
+            } else {
+                window.open('', '_blank', 'width=300,height=100');
+                document.getElementById('result').innerText = "";
+                alert("Search character '" + searchChar + "' not found in the content you typed");
+            }
         }
     </script>
 </head>
 <body>
-
-    <h1>Part 2: Your Heading Here</h1>
-
+    <h1>Part 2: Character Search</h1>
     <form>
-        <label for="contentInput">Type a long content:</label>
-        <textarea id="contentInput" required></textarea>
+        <label for="longContent">Type long content:</label>
+        <textarea id="longContent" rows="4"></textarea>
         <br>
-        <label for="charInput">Type a single character:</label>
-        <input type="text" id="charInput" maxlength="1" required>
-        <br>
+        <label for="searchChar">Type a single character:</label>
+        <input type="text" id="searchChar" maxlength="1" />
         <button type="button" onclick="searchCharacter()">Submit</button>
-        <button type="reset">Clear</button>
     </form>
-
-    <div id="outputResult"></div>
-
-    <p><a href="index.html">Go back to Homework 6 main page</a></p>
-
+    <div id="result"></div>
+    <a href="#">Back to Main Page</a>
 </body>
 </html>

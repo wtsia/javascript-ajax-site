@@ -4,39 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homework 6 - Part 3</title>
+    <!-- Include jQuery library for the mask -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script>
-        // Apply jQuery Mask to phone number input
-        $(document).ready(function(){
-            $('#phoneNumberInput').mask('(000) 000-0000');
+        $(document).ready(function () {
+            // Apply the phone number mask
+            $('#phoneNumber').mask('(999) 999-9999');
         });
 
         function processPhoneNumber() {
-            // Part 3 script goes here
-            // Validate phone number, extract parts, and display results
+            var phoneNumber = document.getElementById('phoneNumber').value;
+
+            // Use regex to extract area code, first 3 digits, and last 4 digits
+            var match = phoneNumber.match(/\((\d{3})\)\s(\d{3})-(\d{4})/);
+
+            if (match) {
+                // Display results in read-only input boxes
+                document.getElementById('areaCode').value = match[1];
+                document.getElementById('firstThreeDigits').value = match[2];
+                document.getElementById('lastFourDigits').value = match[3];
+
+                // Clear error message
+                document.getElementById('errorMessage').innerText = "";
+            } else {
+                // Display error message
+                document.getElementById('errorMessage').innerText = "Please type the phone number in the format (999) 999-9999";
+                // Clear results in read-only input boxes
+                document.getElementById('areaCode').value = "";
+                document.getElementById('firstThreeDigits').value = "";
+                document.getElementById('lastFourDigits').value = "";
+            }
+        }
+
+        function clearForm() {
+            // Clear all fields
+            document.getElementById('phoneNumber').value = "";
+            document.getElementById('areaCode').value = "";
+            document.getElementById('firstThreeDigits').value = "";
+            document.getElementById('lastFourDigits').value = "";
+            document.getElementById('errorMessage').innerText = "";
         }
     </script>
 </head>
 <body>
-
-    <h1>Part 3: Your Heading Here</h1>
-
+    <h1>Part 3: Phone Number Processing</h1>
     <form>
-        <label for="phoneNumberInput">Type the phone number (e.g., (999) 999-9999):</label>
-        <input type="text" id="phoneNumberInput" required>
-        <br>
+        <label for="phoneNumber">Enter phone number:</label>
+        <input type="text" id="phoneNumber" />
         <button type="button" onclick="processPhoneNumber()">Start Process</button>
-        <button type="reset">Clear</button>
+        <button type="button" onclick="clearForm()">Clear Form</button>
     </form>
-
-    <div id="errorDisplay"></div>
-
-    <input type="text" id="areaCode" readonly>
-    <input type="text" id="first3Digits" readonly>
-    <input type="text" id="last4Digits" readonly>
-
-    <p><a href="index.html">Go back to Homework 6 main page</a></p>
-
+    <div>
+        <label for="areaCode">Area Code:</label>
+        <input type="text" id="areaCode" readonly />
+        <br>
+        <label for="firstThreeDigits">First 3 Digits:</label>
+        <input type="text" id="firstThreeDigits" readonly />
+        <br>
+        <label for="lastFourDigits">Last 4 Digits:</label>
+        <input type="text" id="lastFourDigits" readonly />
+        <br>
+        <div id="errorMessage"></div>
+    </div>
+    <a href="#">Back to Main Page</a>
 </body>
 </html>
