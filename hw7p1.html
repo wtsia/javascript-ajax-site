@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 7: Part 1</title>
+    <link rel="stylesheet" type="text/css" href="styles.p1.css">
+</head>
+<body>
+    <!-- PART 1 -->
+    <section id="part1">
+        <h2>Part 1</h2>
+
+        <div id="styleArea">
+            <!-- This area will be used to apply styles chosen by the user -->
+        </div>
+
+        <form>
+            <label>
+                Background Color:
+                <input type="radio" name="bgColor" value="#ffcccb"> Light Red
+                <input type="radio" name="bgColor" value="#c0c0c0"> Silver
+            </label><br>
+
+            <label>
+                Text Decoration:
+                <input type="checkbox" name="style" value="underline"> Underline
+                <input type="checkbox" name="style" value="bold"> Bold
+                <input type="checkbox" name="style" value="italic"> Italic
+            </label><br>
+
+            <label>
+                Font Size:
+                <select name="fontSize">
+                    <option value="1em">Normal</option>
+                    <option value="1.5em">Medium</option>
+                    <option value="2em">Large</option>
+                </select>
+            </label><br>
+
+            <a href="hw7.html">Go back to Homework 7</a>
+        </form>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const styleArea = document.getElementById('styleArea');
+                const form = document.querySelector('form');
+
+                form.addEventListener('input', function (event) {
+                    const { name, value, type, checked } = event.target;
+
+                    switch (type) {
+                        case 'radio':
+                            styleArea.style.backgroundColor = value;
+                            break;
+                        case 'checkbox':
+                            if (checked) {
+                                styleArea.style[name] = value;
+                            } else {
+                                styleArea.style[name] = 'normal';
+                            }
+                            break;
+                        case 'select-one':
+                            styleArea.style.fontSize = value;
+                            break;
+                    }
+                });
+            });
+        </script>
+    </section>
+
+</body>
+</html>
