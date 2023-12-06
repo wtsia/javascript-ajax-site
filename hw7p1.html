@@ -11,8 +11,10 @@
     <section id="part1">
         <h2>Part 1</h2>
 
-        <div id="styleArea">
-            <!-- This area will be used to apply styles chosen by the user -->
+        <div id="styleArea" class="italic">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vulputate sapien nec sagittis aliquam. At ultrices mi tempus imperdiet. Egestas sed sed risus pretium quam vulputate dignissim. Elementum nibh tellus molestie nunc. Ultrices dui sapien eget mi proin. Ut ornare lectus sit amet est placerat in egestas. Urna condimentum mattis pellentesque id nibh tortor id. Ultrices sagittis orci a scelerisque purus semper eget duis at. Tortor posuere ac ut consequat semper. Arcu vitae elementum curabitur vitae nunc sed. Arcu vitae elementum curabitur vitae nunc sed velit dignissim sodales. Neque volutpat ac tincidunt vitae semper quis. Elementum nisi quis eleifend quam adipiscing vitae proin sagittis. Donec et odio pellentesque diam volutpat. At quis risus sed vulputate odio ut enim blandit volutpat. Non blandit massa enim nec. Urna id volutpat lacus laoreet non curabitur. Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Accumsan tortor posuere ac ut consequat semper viverra.</p>
+            <p>Dictum sit amet justo donec enim diam. Est velit egestas dui id ornare arcu odio ut. Facilisis gravida neque convallis a cras. Sit amet justo donec enim diam vulputate ut. Dictumst quisque sagittis purus sit. Molestie nunc non blandit massa enim nec dui. Arcu bibendum at varius vel pharetra. Cras fermentum odio eu feugiat. Vitae turpis massa sed elementum. Sit amet risus nullam eget felis eget. Morbi tristique senectus et netus et malesuada fames ac turpis. Nisl pretium fusce id velit ut. Risus sed vulputate odio ut enim blandit. Velit laoreet id donec ultrices tincidunt arcu non sodales. Sed vulputate odio ut enim. Convallis tellus id interdum velit laoreet id. Tellus in metus vulputate eu scelerisque felis imperdiet proin fermentum. Est placerat in egestas erat imperdiet sed euismod nisi porta.</p>
+            <p>Non curabitur gravida arcu ac. Suspendisse interdum consectetur libero id faucibus nisl tincidunt. Eu feugiat pretium nibh ipsum consequat. Orci dapibus ultrices in iaculis. Feugiat scelerisque varius morbi enim. Tristique senectus et netus et malesuada fames ac turpis egestas. Fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate. Et malesuada fames ac turpis egestas integer eget aliquet. In hac habitasse platea dictumst quisque. Nunc vel risus commodo viverra maecenas accumsan. Porta lorem mollis aliquam ut porttitor leo a. At erat pellentesque adipiscing commodo elit. Aliquet lectus proin nibh nisl condimentum id venenatis a. Nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum. Vestibulum mattis ullamcorper velit sed ullamcorper morbi. Curabitur vitae nunc sed velit dignissim sodales. In iaculis nunc sed augue lacus viverra vitae.</p>
         </div>
 
         <form>
@@ -45,28 +47,52 @@
             document.addEventListener('DOMContentLoaded', function () {
                 const styleArea = document.getElementById('styleArea');
                 const form = document.querySelector('form');
-
+        
+                const appliedStyles = {
+                    bgColor: '',
+                    textDecoration: '',
+                    fontWeight: 'normal',
+                    fontStyle: 'normal',
+                    fontSize: '1em'
+                };
+        
                 form.addEventListener('input', function (event) {
                     const { name, value, type, checked } = event.target;
-
+        
                     switch (type) {
                         case 'radio':
-                            styleArea.style.backgroundColor = value;
+                            appliedStyles.bgColor = value;
                             break;
                         case 'checkbox':
-                            if (checked) {
-                                styleArea.style[name] = value;
+                            if (name === 'style') {
+                                if (checked) {
+                                    console.log(value);
+                                    appliedStyles.textDecoration += value + ' ';
+                                } else {
+                                    appliedStyles.textDecoration = appliedStyles.textDecoration.replace(value, '');
+                                }
                             } else {
-                                styleArea.style[name] = 'normal';
+                                appliedStyles[name] = checked ? value : 'normal';
                             }
                             break;
                         case 'select-one':
-                            styleArea.style.fontSize = value;
+                            appliedStyles.fontSize = value;
                             break;
                     }
+        
+                    applyStyles(styleArea, appliedStyles);
                 });
+        
+                function applyStyles(element, styles) {
+                    element.style.backgroundColor = styles.bgColor;
+                    element.style.textDecoration = styles.textDecoration.trim();
+                    element.style.fontWeight = styles.fontWeight;
+                    element.style.fontStyle = styles.fontStyle;
+                    element.style.fontSize = styles.fontSize;
+                }
             });
         </script>
+        
     </section>
 
 </body>
