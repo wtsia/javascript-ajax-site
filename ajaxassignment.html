@@ -10,6 +10,16 @@
         th,td {
             padding: 5px;
         }
+        /* Style for the colored banner around h2 tags */
+        h2 {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        p {
+            text-align: left;
+        }
     </style>
     <title>Homework 8 - AJAX Application</title>
 </head>
@@ -43,9 +53,9 @@ function myFunction(xml) {
 }
 </script>
 <h2>Explanation of AJAX</h2>
-    <p>
+    <h3>
         The JavaScript contains two functions detailed below:
-    </p>
+    </h3>
     <p>
         The loadDoc() function employs the XMLHttpRequest object 'xhttp' to handle the communication with the server. The function first creates a new XMLHttpRequest object (xhttp), then defines the onload event to call myFunction, then open a GET request for the specified XML file. The onload event executes myFunction() when the request is successfully completed. It initiates an asynchronous HTTP request to retrieve an XML document named "cd_catalog.xml." Finally, it sends the HTTP request via send(), initiating the retrieval process.
     </p>
@@ -53,8 +63,53 @@ function myFunction(xml) {
         The myFunction(xml) function is designed to process the XML data received in response to the XMLHttpRequest. It takes an XML parameter (xml) representing the response. Inside the function, it extracts the XML document (xmlDoc) from the response. Subsequently, it retrieves all elements with the tag name "CD" from the XML document. The function then constructs an HTML table (table) with headers for "Artist" and "Title." It iterates through each "CD" element, extracting the values for "ARTIST" and "TITLE," and appends corresponding rows to the HTML table. Finally, it obtains the element with id="demo" and inserts the modified table into the element.
     </p>
 
-<h2>REST API</h2>
+<h2>REST API: haveibeenpwned</h2>
+<!--    TIP: YOU SHOULD NOT simply answer the questions below, remember that you are writing a REPORT and this is just a checklist to help you write your report!-->
+<!--    What type of response file you get (JSON, XML, etc.)?-->
+<!--    Do you need any type of key to access and use the API?-->
+<!--    Do the companies need to pay any fee to use the API and if they need, how is that charged?-->
+<!--    You need also to provide a link to any type of documentation that would help the developer use the API.-->
+<!--    TIP: Do not use the URL as the words for the hyperlink, use meaningful words to make your hyperlink accessible for users using screen readers!-->
+    <section>
+        <h2>Introduction</h2>
+        <p>
+            haveibeenpwned is a popular site created as a service to the internet community in large (with FBI and NCA data being fed in) with the purpose of encouraging safer standards for user information security. This is accomplished by giving free access to users towards released data breaches, where a database of account identities, already accessible to malicious actors, is cross-referenced with user identities to find compromised accounts. Users often submit an account username or email into the site, and receive a reply confirming or denying if such identities have a corresponding breach.
+        </p>
+        <p>
+        Their REST API v3 is the third iteration of their API.
+        </p>
+    </section>
 
+    <section>
+        <h2>Why Use It?</h2>
+        <p>
+            In any business that utilizes organizational identities and internally communicates using e-mail, the service rendered by this REST API can limit the scope of brute-force or account compromising attacks against an organization. This decreases business downtime and enhances perceived trust to customers.
+        </p>
+        <p>
+            The API offers SSL support, is designed to accept multiple versioning endpoints (but have certain features locked to different versions due to model adoption). While less liberal with request protocol against API design, the haveibeenpwed API accepts only HTTPS based requests, making data exchanges secure between the API and organizational requests. With a subscription, customers are able to make numerous requests per minute, allowing for scaling towards high-volume needs.
+        </p>
+    </section>
+
+    <section>
+        <h2>How to Leverage it?</h2>
+        <p>The API is leveraged using JSON and sending requests to specific endpoints. For example, obtaining breaches for an account:</p>
+        <div id="code">
+            GET https://haveibeenpwned.com/api/v3/breachedaccount/{account}
+            hibp-api-key: [your key]
+        </div>
+        <p>
+            The API is authenticated, requiring an HIBP API key to be passed with the request. This is obtained by purchasing a key via the <a href="https://haveibeenpwned.com/API/Key">API Key Page</a>.</p>
+        <p>
+            The lowest rate is 10 email addresses searches per minute at $3.95 per month or $39.50 annually. Below are resources linking to API Documentation and API Key access.
+        </p>
+    </section>
+
+    <section>
+        <h2>Resources</h2>
+        <a href="https://haveibeenpwned.com/API/v3" class="button-link">API v3 Documentation</a>
+        <br/>
+        <a href="https://haveibeenpwned.com/API/Key" class="button-link">API Key Access</a>
+    </section>
 <nav>
     <a href="index.html">Main</a>
 </nav>
